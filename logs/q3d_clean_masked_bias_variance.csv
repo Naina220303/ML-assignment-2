@@ -1,0 +1,4 @@
+model,clean_test_accuracy,masked_test_accuracy,bias_squared,variance,accuracy_std
+Single Tree,0.45,0.2958,0.6667,0.4333,0.0204
+Bagging,0.6458,0.4125,0.5479,0.0389,0.0482
+SAMME Boosting,0.1208,0.1667,0.9192,0.0212,0.0236

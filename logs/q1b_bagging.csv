@@ -1,0 +1,8 @@
+B,training_accuracy,validation_accuracy,test_accuracy,average_distinct_samples_reported
+1,0.758333,0.4,0.35,10
+5,0.975,0.675,0.5375,10
+10,1,0.7625,0.6375,10
+25,1,0.8375,0.725,10
+50,1,0.9,0.775,10
+100,1,0.9125,0.7875,10
+200,1,0.9,0.825,10

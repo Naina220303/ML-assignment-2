@@ -1,0 +1,4 @@
+model,clean_test_accuracy,masked_test_accuracy
+SAMME Boosting,0.425,0.4
+Decision Tree,0.1125,0.1125
+Bagging,0.55,0.3875

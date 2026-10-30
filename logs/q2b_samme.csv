@@ -1,0 +1,2 @@
+best_depth,requested_rounds,actual_rounds,training_accuracy,training_error,validation_accuracy,test_accuracy
+4,100,100,0.9708333333,0.0291666667,0.475,0.425

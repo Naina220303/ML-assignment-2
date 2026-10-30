@@ -1,0 +1,4 @@
+depth,single_bias_squared,single_variance,single_accuracy,bagging_bias_squared,bagging_variance,bagging_accuracy,variance_removed
+2,0.9233,0.0359,0.0667,0.9301,0.0018,0.2917,0.0341
+None,0.65,0.4583,0.4458,0.555,0.0376,0.625,0.4207
+32,0.6564,0.4162,0.4167,0.5625,0.0344,0.6417,0.3818

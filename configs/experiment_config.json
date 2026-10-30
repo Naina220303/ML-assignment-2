@@ -1,0 +1,312 @@
+{
+  "source_of_truth": "ML_assignment_2.ipynb",
+  "status": "Extracted from the notebook as written; values are not independently rerun or corrected.",
+  "dataset": {
+    "name": "Olivetti Faces",
+    "loader": "sklearn.datasets.fetch_olivetti_faces",
+    "samples": 400,
+    "features_per_image": 4096,
+    "image_shape": [
+      64,
+      64
+    ],
+    "classes": 40,
+    "split": {
+      "method": "Per-class shuffled split using numpy.random.default_rng",
+      "seed": 26011,
+      "train_per_class": 6,
+      "validation_per_class": 2,
+      "test_per_class": 2,
+      "train_samples": 240,
+      "validation_samples": 80,
+      "test_samples": 80,
+      "saved_file": "olivetti_split.npz",
+      "arrays": [
+        "train_id",
+        "val_id",
+        "test_id"
+      ]
+    }
+  },
+  "shared": {
+    "random_seed": 26011,
+    "classes": 40,
+    "masking": {
+      "target": "test images",
+      "image_shape": [
+        64,
+        64
+      ],
+      "masked_region_rows": [
+        24,
+        40
+      ],
+      "masked_region_columns": [
+        24,
+        40
+      ],
+      "replacement_value": 0,
+      "description": "Central 16x16 pixel region set to zero"
+    }
+  },
+  "q1a_decision_tree": {
+    "depth_candidates": [
+      2,
+      4,
+      8,
+      16,
+      null
+    ],
+    "min_samples_leaf_candidates": [
+      1,
+      2,
+      4
+    ],
+    "random_state": 26011,
+    "selection_metric": "validation_accuracy",
+    "final_evaluation": [
+      "training_accuracy",
+      "validation_accuracy",
+      "test_accuracy"
+    ],
+    "tree_plot_max_depth": 4
+  },
+  "q1b_bagging": {
+    "number_of_bootstrap_trees_trained": 200,
+    "reported_ensemble_sizes": [
+      1,
+      5,
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "bootstrap_sample_size": "same as training set (240), sampled with replacement",
+    "bootstrap_rng_seed": 26011,
+    "tree_random_state": "26011 + zero_based_tree_index",
+    "base_tree_parameters": "best_depth and best_leaf selected in Q1(a)",
+    "aggregation": "majority vote"
+  },
+  "q1c_oob_and_ensemble_diagnostics": {
+    "oob_bootstrap_rng_seed": 26011,
+    "oob_bootstrap_sample_size": "same as training set (240), sampled with replacement",
+    "disagreement_ensemble_sizes": [
+      1,
+      5,
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "disagreement_data": "test set",
+    "vote_margin_ensemble_sizes": [
+      1,
+      5,
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "vote_margin_data": "validation set"
+  },
+  "q1d_masking_comparison": {
+    "models": [
+      "selected single decision tree",
+      "200-tree bagging ensemble"
+    ],
+    "evaluation": [
+      "clean test images",
+      "centrally masked test images"
+    ],
+    "bagging_trees": 200,
+    "aggregation": "majority vote"
+  },
+  "q2a_samme_weight_update_example": {
+    "features": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "labels": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2
+    ],
+    "initial_sample_weights": "uniform",
+    "weak_learner": "DecisionTreeClassifier",
+    "max_depth": 1,
+    "random_state": 26011,
+    "multiclass_alpha": "log((1-error)/error) + log(K-1)"
+  },
+  "q2b_samme": {
+    "depth_candidates": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "requested_rounds_candidates": [
+      10,
+      25,
+      50,
+      100
+    ],
+    "tree_random_state": "26011 + zero_based_round_index",
+    "initial_sample_weights": "uniform",
+    "model_selection_metric": "validation_accuracy",
+    "stopping_conditions": [
+      "weighted_error >= 1 - 1/K",
+      "weighted_error == 0"
+    ],
+    "multiclass_alpha": "log((1-error)/error) + log(K-1)"
+  },
+  "q2c_face_masking": {
+    "input": "test images",
+    "masking": "shared.masking",
+    "displayed_example_index": 0
+  },
+  "q2d_clean_masked_model_comparison": {
+    "samme": {
+      "weak_learner_depth": 4,
+      "requested_rounds": 100,
+      "random_state": 26011
+    },
+    "single_decision_tree": {
+      "max_depth": 4,
+      "random_state": 26011
+    },
+    "bagging": {
+      "base_tree_max_depth": 4,
+      "n_estimators": 100,
+      "random_state": 26011
+    },
+    "evaluation": [
+      "clean test images",
+      "centrally masked test images"
+    ]
+  },
+  "q3a_bias_variance": {
+    "repetitions": 5,
+    "class_stratified_resampling": "sample with replacement; retain the original per-class training count",
+    "resampling_rng_seed": 26011,
+    "single_tree": {
+      "parameters": "best_depth and best_leaf selected in Q1(a)",
+      "random_state": "26011 + repetition_index"
+    },
+    "bagging": {
+      "estimators_per_repetition": 20,
+      "base_tree_parameters": "best_depth and best_leaf selected in Q1(a)",
+      "seed_per_repetition": "27000 + repetition_index * 1000"
+    },
+    "samme": {
+      "requested_rounds_per_repetition": 20,
+      "depth": "best depth selected in Q2(b)",
+      "seed_per_repetition": "28000 + repetition_index * 1000"
+    },
+    "evaluation": "test-set class probability/prediction vectors; report bias squared, variance, mean test accuracy and test-accuracy standard deviation"
+  },
+  "q3b_depth_comparison": {
+    "repetitions": 3,
+    "class_stratified_resampling_rng_seed": 26012,
+    "depths": [
+      2,
+      "best_depth_from_Q1a",
+      32
+    ],
+    "bagging_estimators": 20,
+    "single_tree_random_state": "31000 + repetition_index",
+    "bagging_seed_per_repetition": "32000 + repetition_index * 1000",
+    "min_samples_leaf": "best_leaf_from_Q1a",
+    "metrics": [
+      "single bias squared",
+      "single variance",
+      "single accuracy",
+      "bagging bias squared",
+      "bagging variance",
+      "bagging accuracy",
+      "variance removed"
+    ]
+  },
+  "q3c_depth_disagreement": {
+    "repetitions": "reuses the three class-stratified resamples created in Q3(b)",
+    "depths": "depth_values from Q1(a): [2, 4, 8, 16, null]",
+    "single_tree_random_state": "41000 + repetition_index",
+    "bagging_estimators": 20,
+    "bagging_seed_per_repetition": "42000 + repetition_index * 1000",
+    "min_samples_leaf": "best_leaf_from_Q1a",
+    "metrics": [
+      "bagging accuracy improvement",
+      "mean leaf occupancy",
+      "pairwise disagreement"
+    ]
+  },
+  "q3d_clean_masked_bias_variance": {
+    "repetitions": "reuses the three class-stratified resamples created in Q3(b)",
+    "bagging_estimators": 20,
+    "samme_requested_rounds": 20,
+    "single_tree_random_state": "51000 + repetition_index",
+    "bagging_seed_per_repetition": "52000 + repetition_index * 1000",
+    "samme_depth": "best depth selected in Q2(b)",
+    "samme_seed_per_repetition": "53000 + repetition_index * 1000",
+    "min_samples_leaf": "best_leaf_from_Q1a",
+    "evaluation": [
+      "clean test images",
+      "centrally masked test images"
+    ],
+    "reported_metrics": [
+      "clean test accuracy",
+      "masked test accuracy",
+      "bias squared",
+      "variance",
+      "accuracy standard deviation"
+    ]
+  },
+  "reproducibility_notes": [
+    "null in depth candidate lists means max_depth=None (unrestricted depth).",
+    "Q3(b), Q3(c), and Q3(d) use the three resamples created in Q3(b), rather than the five resamples independently created in Q3(a).",
+    "The notebook is the executable source of truth. This JSON documents its settings; it does not alter notebook code or guarantee identical results across different library versions.",
+    "The notebook contains implementation details and possible issues that are not corrected by this configuration file."
+  ]
+}

@@ -1,6 +1,5 @@
 # Machine Learning Assignment 2 — Olivetti Faces
 
-This repository packages the **original notebook supplied by the student**. The notebook has been copied without editing its code, cell order, parameters, outputs, or experimental settings.
 
 ## Main file
 
@@ -22,14 +21,6 @@ The notebook writes `olivetti_split.npz` when its split-generation cell is execu
 
 The notebook uses Python packages including NumPy, pandas, Matplotlib, and scikit-learn. See `requirements.txt` for an installable dependency list. It is a compatibility-oriented list, not a record of the exact package versions installed on the original machine. For strict environment reproduction, create a lock file from the environment in which the notebook is successfully run.
 
-## Run the notebook
 
-See [`reproduction_commands.md`](reproduction_commands.md). Run all cells in order in Jupyter. Save the executed notebook and generated split after confirming that the run completes successfully.
 
-## Before submission
 
-Add the actual GitHub repository URL, student name, roll number, and final commit hash to the paper/report wherever required. Obtain the URL and hash from your own GitHub repository after pushing; do not use placeholders as final submission details.
-
-## Integrity note
-
-This package intentionally does not correct or reinterpret the notebook. Any questions about the methodology or results should be discussed separately, with the original notebook remaining unchanged unless the student explicitly requests an edit.

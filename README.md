@@ -13,9 +13,9 @@ The notebook writes `olivetti_split.npz` when its split-generation cell is execu
 
 ## Repository folders
 
-- `figures/` — place exported figures here if required.
-- `logs/` — place the final execution log or captured results here after running the notebook.
-- `configs/` — reserved for configuration files if you decide to export them separately. No configuration has been invented or extracted into a new format.
+- `figures/` — The exported figures here.
+- `logs/` — The final execution log or captured results here after running the notebook.
+- `configs/` — For configuration files.
 
 ## Environment
 
